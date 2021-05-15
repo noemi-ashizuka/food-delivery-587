@@ -15,15 +15,13 @@ class SessionsController
     employee = @employee_repository.find_by_username(username) # instance / nil
     # check if the employee exists and the password matches the one in the repo
     if employee && employee.password == password
+      # if yes welcome the user
       @sessions_view.welcome(employee)
       return employee
     else
+      # if not tell the user to try again
       @sessions_view.wrong_credentials
       sign_in
     end
-  
-    # if yes welcome the user
-
-    # if not tell the user to try again
   end
 end
